@@ -157,23 +157,6 @@ endif(G2O_USE_OPENMP)
 set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL)
 
-# If OpenGL was found, use the import target if available. If not, use old-style includes
-set(G2O_USE_OPENGL ON CACHE BOOL "Build g2o with OpenGL support for visualization")
-if (OPENGL_FOUND AND G2O_USE_OPENGL)
-  if (TARGET OpenGL::GL)
-    set(G2O_OPENGL_TARGET "OpenGL::GL;OpenGL::GLU")
-  else()
-    set(G2O_OPENGL_TARGET "${OPENGL_LIBRARIES}")
-    include_directories(${OPENGL_INCLUDE_DIR})
-  endif()
-  set (G2O_HAVE_OPENGL 1)
-  message(STATUS "Compiling with OpenGL support")
-  #message(WARNING G2O_OPENGL_TARGET=${G2O_OPENGL_TARGET})
-endif()
-
-# For building the GUI
-find_package(QGLViewer)
-
 # shall we build the core apps using the library
 set(G2O_BUILD_APPS ON CACHE BOOL "Build g2o apps")
 if(G2O_BUILD_APPS)
@@ -367,7 +350,6 @@ endif ()
 include_directories(${g2o_SOURCE_DIR} ${PROJECT_BINARY_DIR})
 
 # Generate config.h
-set(G2O_OPENGL_FOUND ${OPENGL_FOUND})
 set(G2O_HAVE_CHOLMOD ${CHOLMOD_FOUND})
 set(G2O_HAVE_CSPARSE ${CSPARSE_FOUND})
 set(G2O_SHARED_LIBS ${BUILD_SHARED_LIBS})
@@ -412,5 +394,5 @@ if(BUILD_UNITTESTS)
 endif()
 
 # Include the subdirectories
-add_subdirectory(EXTERNAL)
+#add_subdirectory(EXTERNAL)
 add_subdirectory(g2o)

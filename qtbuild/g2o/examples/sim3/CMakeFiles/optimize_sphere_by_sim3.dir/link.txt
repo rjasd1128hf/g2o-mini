@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall -W -O3 -DNDEBUG -O3  -rdynamic CMakeFiles/optimize_sphere_by_sim3.dir/optimize_sphere_by_sim3.cpp.o  -o ../../../../bin/optimize_sphere_by_sim3  -Wl,-rpath,/home/daoyuan/Desktop/g2o_mini/lib -ltypes_sim3 -ltypes_sba ../../../../lib/libg2o_types_slam3d.so ../../../../lib/libg2o_core.so ../../../../lib/libg2o_stuff.so -lrt 
